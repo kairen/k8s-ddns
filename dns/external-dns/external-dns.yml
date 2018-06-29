@@ -73,7 +73,7 @@ spec:
         - --registry=txt
         - --interval=30s
         - --log-level=debug
-        # - --fqdn-template="{{name}}.k8s.local"
+        # - --fqdn-template="{{.Namespace}}.k8s.local"
         # - --domain-filter=k8s.local
         # - --namespace=default
         # - --txt-owner-id=default.k8s.local
