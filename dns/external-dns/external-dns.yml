@@ -54,6 +54,15 @@ spec:
       labels:
         k8s-app: external-dns
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: node-role.kubernetes.io/master
+                operator: In
+                values:
+                - ''
       serviceAccountName: external-dns
       tolerations:
       - key: CriticalAddonsOnly
@@ -71,7 +80,7 @@ spec:
         - --source=service
         - --source=ingress
         - --registry=txt
-        - --interval=30s
+        - --interval=15s
         - --log-level=debug
         # - --fqdn-template="{{.Namespace}}.k8s.local"
         # - --domain-filter=k8s.local
